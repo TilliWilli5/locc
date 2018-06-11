@@ -22,22 +22,21 @@ describe(subject, ()=>{
 
         it("every instance should has separate context", ()=>{
             //assign
+            var loc1 = lofac().context("ru");
+            var loc2 = lofac().context("en");
             //act
             //assert
-            chai.assert.notDeepEqual(
-                lofac().context("ru").getContext(),
-                lofac().context("en").getContext(),
-            );
+            chai.assert.notEqual( loc1.getContext(), loc2.getContext() );
         });
 
         it("every instance should has separate config", ()=>{
             //assign
+            var loc1 = lofac({strictMode: true});
+            var loc2 = lofac({strictMode: false});
+            lofac({strictMode: "shared"})//пробуем переписать общее состояние двух предыдущих
             //act
             //assert
-            chai.assert.notDeepEqual(
-                lofac({strictMode: true}).config,
-                lofac({strictMode: false}).config
-            );
+            chai.assert.notDeepEqual(loc1.config, loc2.config);
 
         });
 
