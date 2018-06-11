@@ -1,10 +1,8 @@
 const chai = require("chai")
 const lofac = require("../Source/locFacade.js");
 
-const subject = __dirname + __filename;
 
-
-describe(subject, ()=>{
+describe(__filename, ()=>{
 
     describe("locfactory", ()=>{
 
