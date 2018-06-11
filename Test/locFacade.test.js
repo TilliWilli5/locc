@@ -40,6 +40,16 @@ describe(subject, ()=>{
 
         });
 
+        it("every instance should has separate storage", ()=>{
+            //assign
+            var loc1 = lofac({context: "ru"}).add("ShowMeLabel", "Показать");
+            var loc2 = lofac({context: "ru"}).add("ShowMeLabel", "Show");
+            //act
+            //assert
+            chai.assert.notEqual(loc1("ShowMeLabel"), loc2("ShowMeLabel"));
+
+        });
+
         it("should be chainable", ()=>{
             //assign
             var loc = lofac();
@@ -56,26 +66,29 @@ describe(subject, ()=>{
 
     describe("loc.setup", ()=>{
 
-        /* it("positive test", ()=>{
+        it("should accept different config object", ()=>{
             //assign
-            var config = {};
-    
             //act
-            loc.setup(config);
-    
+            var loc1 = lofac().setup();
+            var loc2 = lofac().setup(null);
+            var loc3 = lofac().setup({});
+            var loc4 = lofac().setup("");
+            var loc5 = lofac().setup("t");
+            var loc6 = lofac().setup(12);
+            var loc7 = lofac().setup({strictMode: true, "prop1": null});
+            
             //assert
-        });
+            chai.assert.exists(loc1.config);
+            chai.assert.exists(loc2.config);
+            chai.assert.exists(loc3.config);
+            chai.assert.exists(loc4.config);
+            chai.assert.exists(loc5.config);
+            chai.assert.exists(loc6.config);
+            chai.assert.exists(loc7.config);
 
-        it("negative test", ()=>{
-            //assign
-            var config = null;
-    
-            //act
-            loc.setup(config);
-    
-            //assert
-            chai.assert.exists(loc.config);
-        }); */
+            chai.assert.equal(loc7.config.strictMode, true);
+            chai.assert.equal(loc7.config.prop1, null);
+        });
 
         
     });

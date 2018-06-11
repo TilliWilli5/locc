@@ -5,17 +5,11 @@
 
 const LocClass = require("./loc.js");
 
-// var self;
-
+/** Factory class for instance of LocClass */
 function locfactory(config){
+
     var inst = new LocClass(config);
-    // var bound = loc.bind(inst);
-
-    // var selfInst = () => inst;
-    // var self = () => bound;
-
-    // bound.config = inst.config;
-    // locBinded.context = locInst.context;
+    
     var self = function loc(key, context){
         return inst.Translate(key, context);
     }
@@ -30,7 +24,7 @@ function locfactory(config){
         return self;
     }
     
-    self.add = function(key, context, value){
+    self.add = function(key, value, context){
         inst.Add(key, context, value);
         return self;
     }
@@ -42,10 +36,6 @@ function locfactory(config){
     Object.defineProperty(self, "config", {
         get: ()=>inst.config
     });
-
-    // Object.defineProperty(self, "context", {
-    //     get: ()=>inst.context
-    // })
 
     return self;
 }

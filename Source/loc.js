@@ -12,6 +12,7 @@ class Loc
 {
     constructor(config) {
         this[cfg] = this._MergeConfigs(defaultConfig, config);
+        this[ctx] = config && config.context || defaultConfig.context;
         this[store] = new Storage();
     }
 
@@ -24,7 +25,7 @@ class Loc
                 throw result.error;
         else
             return result.success
-                ? result.success
+                ? result.value
                 : fallbackResult;
     }
 
