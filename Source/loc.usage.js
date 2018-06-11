@@ -21,4 +21,17 @@ console.log(loc("HideMeLabel", "ru-RU"));//Скрыть
 console.log(loc("HideMeLabel", "en-EN"));//Hide
 loc.context("labelName");
 console.log(loc("HideMeLabel"));//HideMeLabel
+//---------------------------------
+var locConfig = {
+    strictMode: true,
+    context: "awesomeContext"
+};
+loc.setup(locConfig);
 
+console.log(loc("NonExistsLabelName"));//throw new Error
+console.log(loc("ShowMeLabel", "NonExistsContext"));//throw new Error
+
+loc.setup({ strictMode: false });
+
+console.log(loc("NonExistsLabelName"));//return string: "[NonExistsLabelName:awesomeContext]", where awesomeContext - is current context
+console.log(loc("ShowMeLabel", "NonExistsContext"));//return string: "[NonExistsLabelName:awesomeContext]"
