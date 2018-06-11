@@ -24,6 +24,12 @@ function locfactory(config){
         return self;
     }
     
+    /**
+     * Добавить один перевод в словарь
+     * @param {String} key ключ
+     * @param {String} value значение
+     * @param {String} context текущий язык
+     */
     self.add = function(key, value, context){
         inst.Add(key, context, value);
         return self;
