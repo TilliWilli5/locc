@@ -5,12 +5,19 @@
 
 const LocClass = require("./loc.js");
 
-const inst = Symbol("inst");
+var self;
 
 function locfactory(config){
+    var inst = new LocClass(config);
+    var bound = loc.bind(inst);
 
-    return loc.bind(new LocClass(config));
-    
+    var selfInst = () => inst;
+    var self = () => bound;
+
+    // bound.config = inst.config;
+    // locBinded.context = locInst.context;
+
+    return bound;
 }
 
 function loc(key, context){
@@ -19,22 +26,21 @@ function loc(key, context){
 
 loc.setup = function(config){
     this.Setup(config);
-    return loc;
+    return self();
 }
 
 loc.context = function(context){
     this.Context(context);
-    return loc;
+    return self();
 }
 
 loc.add = function(key, context, value){
     this.Add(key, context, value);
-    return loc;
+    return self();
 }
 
-Object.defineProperty(loc, "config", {
-    get: () => { this.config }
-});
-
+loc.getContext = function(){
+    return this.context;
+}
 
 module.exports = locfactory;

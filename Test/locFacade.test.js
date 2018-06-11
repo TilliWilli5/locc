@@ -16,12 +16,42 @@ describe(subject, ()=>{
             chai.assert.exists(lofac(null));
             chai.assert.exists(lofac({}));
             chai.assert.exists(lofac(""));
+            chai.assert.exists(lofac("t"));
             chai.assert.exists(lofac(12));
-            console.log(lofac(12).config);
         });
 
-        it("Проверить на развязанность нескольких инстансов", ()=>{
-            
+        it("every instance should has separate context", ()=>{
+            //assign
+            //act
+            //assert
+            chai.assert.notDeepEqual(
+                lofac().context("ru").getContext(),
+                lofac().context("en").getContext(),
+            );
+        });
+
+        it("every instance should has separate config", ()=>{
+            //assign
+            //act
+            //assert
+            chai.assert.notDeepEqual(
+                lofac({strictMode: true}).config,
+                lofac({strictMode: false}).config
+            );
+
+        });
+
+        it("should be chainable", ()=>{
+            //assign
+            var loc = lofac();
+            var locAfterSetup = loc.setup({strictMode:true});
+            var locAfterContext = loc.context("ru");
+            var locAfterAdd = loc.setup("ShowMeLabel");
+            //act
+            //assert
+            chai.assert.strictEqual(loc, locAfterSetup);
+            chai.assert.strictEqual(locAfterSetup, locAfterContext);
+            chai.assert.strictEqual(locAfterContext, locAfterAdd);
         });
     });
 

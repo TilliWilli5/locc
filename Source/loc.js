@@ -61,6 +61,10 @@ class Loc
     get config(){
         return this[cfg];
     }
+
+    get context(){
+        return this[ctx];
+    }
 }
 
 
