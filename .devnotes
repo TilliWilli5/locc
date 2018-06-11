@@ -1,0 +1,6 @@
+loc-core модуль для чистого nodejs js
+loc-auto автоматический перевод с использованием google-translate или аналогичного словаря
+loc-webpack-plugin плагин для создания файлов перевода
+loc-react-plugin плагин для использования в SPA приложениях написанных на react'e
+loc-react-router-plugin плагин для автоматической работы с react-router
+loc-jquery-plugin плагин для автоматического перевода всех элементов на странице (содержащих класс="loc-translate")
