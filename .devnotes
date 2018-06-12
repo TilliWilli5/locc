@@ -7,8 +7,8 @@ loc-jquery-plugin плагин для автоматического перев�
 
 ROADMAP
 [v] -> loc-core functionality
-[ ] -> setup webpack and building flow
-[ ] -> loc-core 0.1.0 to @tilliwilli/locc
+[v] -> setup webpack and building flow
+[v] -> loc-core 0.1.0 to @tilliwilli/locc
 [ ] -> my page with reat-router and locc
 [ ] -> loc-react-plugin
 [ ] -> 

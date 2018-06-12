@@ -10,7 +10,7 @@
     "build-prod-cont": "webpack ./Source/locFacade.js -o ./Build/Production/index.js --mode=production --output-libraryTarget=commonjs2 -w",
     "build-dev-cont": "webpack ./Source/locFacade.js -o ./Build/Development/index.js --mode=development --output-libraryTarget=commonjs2 -w",
     "build-webpack": "webpack --config=webpack.config.js",
-    "build-npm": "gulp default"
+    "build-npm": "npm run build-prod && gulp default"
   },
   "keywords": [
     "localization",
