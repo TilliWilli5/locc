@@ -35,3 +35,25 @@ loc.setup({ strictMode: false });
 
 console.log(loc("NonExistsLabelName"));//return string: "[NonExistsLabelName:awesomeContext]", where awesomeContext - is current context
 console.log(loc("ShowMeLabel", "NonExistsContext"));//return string: "[NonExistsLabelName:awesomeContext]"
+//---------------------------------
+var loc = lofac({
+    shadowingMode: true
+});
+
+loc("Label1");
+loc("Label2");
+loc("Button1");
+loc("Title1");
+
+var dict = loc.shadowDictionary;//здесь мы получим список всех необходимых переводов
+/*
+{
+    "shadowContext":{
+        Label1: "",
+        Label2: "",
+        Button1: "",
+        Title1: "",
+    }
+}
+*/
+//---------------------------------

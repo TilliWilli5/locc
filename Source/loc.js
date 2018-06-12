@@ -3,6 +3,10 @@ const Storage = require("./locStorage.js");
 const ctx = Symbol("ctx");
 const cfg = Symbol("cfg");
 const store = Symbol("store");
+const shadowStore = Symbol("shadowStore");
+
+const shadowContext = "shadowContext";
+const shadowKey = "";
 
 const defaultConfig = {
     strictMode: false,
@@ -13,7 +17,10 @@ class Loc
     constructor(config) {
         this[cfg] = this._MergeConfigs(defaultConfig, config);
         this[ctx] = config && config.context || defaultConfig.context;
-        this[store] = new Storage();
+        this[store] = new Storage(config.dict);
+
+        if(this[cfg].shadowingMode)
+            this[shadowStore] = new Storage();
     }
 
     //PRIVATE
@@ -36,11 +43,15 @@ class Loc
 
     //PUBLIC
     Add(key, context, value) {
+        if(this.isShadowMode)
+        {
+            this[shadowStore].Add(key, shadowContext, shadowKey);
+            return;
+        }
         context = context || this[ctx];
         var result = this[store].Put(key, context, value);
         if(!result.success)
             throw result.error;
-        // return this._Result(result);
     }
 
     Translate(key, context) {
@@ -57,7 +68,7 @@ class Loc
 
     Setup(config) {
         if (!config)
-            return { error: new Error(`[Loc](invalid context):${config}`) };
+            return { error: new Error(`[Loc](invalid config):${config}`) };
         this[cfg] = this._MergeConfigs(this[cfg], config);
     }
 
@@ -71,6 +82,10 @@ class Loc
 
     get dictionary(){
         return this[store].Snapshot();
+    }
+
+    get isShadowMode(){
+        return this[cfg].shadowingMode;
     }
 }
 

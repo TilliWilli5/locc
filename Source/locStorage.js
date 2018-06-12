@@ -2,12 +2,24 @@ const store = Symbol("store");
 
 class Storage
 {
-    constructor(){
-        this[store] = this._CreateDictionary();
+    constructor(dict){
+        this[store] = this._EmptyDict();
+        if (!dict)
+            this._InitDict(dict);
     }
 
     //PRIVATE
-    _CreateDictionary(){
+    _InitDict(dict){
+        var self = this;
+        Object.keys(dict).forEach(context => {
+            self[store][context] = self._EmptyDict();
+            Object.keys(dict[context]).forEach(key => {
+                self[store][context][key] = dict[context][key];
+            });
+        });
+    }
+
+    _EmptyDict(){
         return Object.create(null);
     }
 
@@ -22,7 +34,7 @@ class Storage
 
         //инициализируем если небыло такого контекста еще
         if(!this[store][context])
-            this[store][context] = this._CreateDictionary();
+            this[store][context] = this._EmptyDict();
         
         //сохраняем значение
         this[store][context][key] = value;
