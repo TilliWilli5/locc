@@ -1,23 +1,26 @@
 "use strict";
 
 var gulp = require('gulp');
-var replace = require('gulp-replace');
-
-// var packageVersion = require("./package.json").version;
-
+var intercept = require('gulp-intercept');
+var mergeStream = require('merge-stream');
 
 gulp.task("npm", ()=>{
-    /* var stream =  */gulp.src("Build/Production/index.js")
+
+    var indexStr = gulp.src("Build/Production/index.js")
         .pipe(gulp.dest("Artifacts/Npm"));
 
-    gulp.src("package.json")
-        // .pipe((...args)=>{
-        //     console.log(args);
-        // })
-        // .pipe(replace())
+    var packageStr = gulp.src("package.json")
+        .pipe(intercept(file=>{
+            var pkg = JSON.parse(file.contents.toString());
+            delete pkg.devDependencies;
+            delete pkg.scripts;
+            var newContent = JSON.stringify(pkg, null, "\t");
+            file.contents = Buffer.from(newContent);
+            return file;
+        }))
         .pipe(gulp.dest("Artifacts/Npm"));
 
-    // return stream;
+    return mergeStream(indexStr, packageStr);
 });
 
 gulp.task("default", ["npm"]);
