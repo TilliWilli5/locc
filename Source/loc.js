@@ -66,6 +66,10 @@ class Loc
     get context(){
         return this[ctx];
     }
+
+    get dictionary(){
+        return this[store].Snapshot();
+    }
 }
 
 

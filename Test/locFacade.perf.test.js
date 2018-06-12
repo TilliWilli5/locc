@@ -1,7 +1,6 @@
 const chai = require("chai")
-const lofac = require("../Source/locFacade.js");
 const { performance } = require("perf_hooks");
-const dataSet = require("./performanceDataSet.js");
+const lofac = require("../Build/Production/index.js");
 
 
 describe(__filename, () => {
@@ -37,7 +36,7 @@ describe(__filename, () => {
             console.log(`count: ${count} elapsed ms: ${avgSum / avgCount} total: ${totalE - totalS}`);
         });
 
-        it("loc()", () => {return;
+        it("loc()", () => {
             //assign
             var loc = lofac();
             var count = 1000000;

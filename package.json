@@ -1,10 +1,15 @@
 {
-  "name": "loc",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@tilliwilli/locc",
+  "version": "0.1.0",
+  "description": "Translate everything",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build-prod": "webpack ./Source/locFacade.js -o ./Build/Production/index.js --mode=production --output-libraryTarget=commonjs2",
+    "build-dev": "webpack ./Source/locFacade.js -o ./Build/Development/index.js --mode=development --output-libraryTarget=commonjs2",
+    "build-prod-cont": "webpack ./Source/locFacade.js -o ./Build/Production/index.js --mode=production --output-libraryTarget=commonjs2 -w",
+    "build-dev-cont": "webpack ./Source/locFacade.js -o ./Build/Development/index.js --mode=development --output-libraryTarget=commonjs2 -w",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",

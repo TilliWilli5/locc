@@ -4,3 +4,11 @@ loc-webpack-plugin плагин для создания файлов перев�
 loc-react-plugin плагин для использования в SPA приложениях написанных на react'e
 loc-react-router-plugin плагин для автоматической работы с react-router
 loc-jquery-plugin плагин для автоматического перевода всех элементов на странице (содержащих класс="loc-translate")
+
+ROADMAP
+-> loc-core functionality
+-> setup webpack and building flow
+-> loc-core 0.1.0 to @tilliwilli/locc
+-> 
+-> my page with reat-router and locc
+-> 

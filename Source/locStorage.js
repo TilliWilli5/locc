@@ -31,6 +31,10 @@ class Storage
             return { error: new Error(`[Storage](key doesn't exist):${key}`) };
         return { value: this[store][context][key], success: true };
     }
+
+    Snapshot(){
+        return this[store];
+    }
 }
 
 module.exports = Storage;
