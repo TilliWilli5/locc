@@ -38,7 +38,9 @@ class Loc
     Add(key, context, value) {
         context = context || this[ctx];
         var result = this[store].Put(key, context, value);
-        return this._Result(result);
+        if(!result.success)
+            throw result.error;
+        // return this._Result(result);
     }
 
     Translate(key, context) {

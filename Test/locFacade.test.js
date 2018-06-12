@@ -1,4 +1,5 @@
 const chai = require("chai")
+// const lofac = require("../Build/Development/index.js");
 const lofac = require("../Build/Production/index.js");
 
 
@@ -62,6 +63,39 @@ describe(__filename, ()=>{
         });
     });
 
+    describe("loc.add", ()=>{
+
+        it("should throw error if initial context doenst specified", ()=>{
+            //assign
+            var loc = lofac();
+            //act
+            //assert
+            chai.expect(()=>{
+                loc.add("ShowMeLabel", "Show");
+            }).to.throw();
+        });
+
+    });
+
+    describe("loc", ()=>{
+
+        it("should doesn't have keys from Object.prototype", ()=>{
+            //assign
+            var loc = lofac();
+            var locStrict = lofac({strictMode:true});
+
+            //act
+            loc.add("label", "text", "ctx");
+            locStrict.add("label", "text", "ctx");
+
+            //assert
+            chai.assert.isString(loc("hasOwnProperty", "ctx"));
+            chai.expect(()=>{
+                locStrict("hasOwnProperty", "ctx")
+            }).to.throw();// assert.isUndefined();
+        });
+    });
+
     describe("loc.setup", ()=>{
 
         it("should accept different config object", ()=>{
@@ -88,7 +122,36 @@ describe(__filename, ()=>{
             chai.assert.equal(loc7.config.prop1, null);
         });
 
-        
+    });
+
+    describe("loc.dictionary", ()=>{
+        it("should return dictionary", ()=>{
+            //assign
+            var loc1 = lofac();
+
+            //act
+            loc1.add("ShowMeLabel", "Показать", "ru_RU");
+            loc1.add("ShowMeLabel", "Show", "en_EN");
+            
+            loc1.context("en_EN");
+            loc1.add("LinkLabel", "Link");
+            loc1.add("ButtonLabel", "Button");
+            loc1.add("ImageLabel", "Image");
+
+            loc1.context("ru_RU");
+            loc1.add("LinkLabel", "Ссылка");
+            loc1.add("ButtonLabel", "Кнопка");
+            loc1.add("ImageLabel", "Изображение");
+
+            var dict = loc1.dictionary;
+            
+            //assert
+            console.dir(dict);
+            chai.assert.exists(dict);
+            chai.assert.exists(dict);
+            chai.assert.exists(dict);
+        });
+
     });
     
 })

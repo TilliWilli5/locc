@@ -3,9 +3,15 @@ const store = Symbol("store");
 class Storage
 {
     constructor(){
-        this[store] = {};
+        this[store] = this._CreateDictionary();
     }
 
+    //PRIVATE
+    _CreateDictionary(){
+        return Object.create(null);
+    }
+
+    //PUBLIC
     Put(key, context, value) {
         if (!context)
             return { error: new Error(`[Storage](invalid context):${context}`) };
@@ -16,7 +22,7 @@ class Storage
 
         //инициализируем если небыло такого контекста еще
         if(!this[store][context])
-            this[store][context] = {};
+            this[store][context] = this._CreateDictionary();
         
         //сохраняем значение
         this[store][context][key] = value;

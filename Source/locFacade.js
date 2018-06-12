@@ -43,6 +43,10 @@ function locfactory(config){
         get: ()=>inst.config
     });
 
+    Object.defineProperty(self, "dictionary", {
+        get: ()=>inst.dictionary
+    });
+
     return self;
 }
 
