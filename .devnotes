@@ -6,7 +6,7 @@ loc-react-router-plugin плагин для автоматической раб�
 loc-jquery-plugin плагин для автоматического перевода всех элементов на странице (содержащих класс="loc-translate")
 
 ROADMAP
-[ ] -> loc-core functionality
+[v] -> loc-core functionality
 [ ] -> setup webpack and building flow
 [ ] -> loc-core 0.1.0 to @tilliwilli/locc
 [ ] -> my page with reat-router and locc

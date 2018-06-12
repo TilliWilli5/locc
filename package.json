@@ -9,16 +9,24 @@
     "build-dev": "webpack ./Source/locFacade.js -o ./Build/Development/index.js --mode=development --output-libraryTarget=commonjs2",
     "build-prod-cont": "webpack ./Source/locFacade.js -o ./Build/Production/index.js --mode=production --output-libraryTarget=commonjs2 -w",
     "build-dev-cont": "webpack ./Source/locFacade.js -o ./Build/Development/index.js --mode=development --output-libraryTarget=commonjs2 -w",
-    "build": "webpack"
+    "build": "webpack",
+    "build-npm": "webpack --config=webpack.npm.js",
+    "gulp": "gulp default"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@tilliwilli/sgl": "1.0.1"
-  },
+  "keywords": [
+    "localization",
+    "translation",
+    "language",
+    "locale",
+    "intl"
+  ],
+  "author": "tilliwilli",
+  "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "chai": "4.1.2",
+    "gulp": "3.9.1",
+    "gulp-replace": "1.0.0",
     "mocha": "5.2.0"
   }
 }
