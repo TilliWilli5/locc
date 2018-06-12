@@ -84,6 +84,10 @@ class Loc
         return this[store].Snapshot();
     }
 
+    get shadowDictionary(){
+        return this[shadowStore].shadowContext;
+    }
+
     get isShadowMode(){
         return this[cfg].shadowingMode;
     }

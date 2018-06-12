@@ -4,7 +4,7 @@ class Storage
 {
     constructor(dict){
         this[store] = this._EmptyDict();
-        if (!dict)
+        if (dict)
             this._InitDict(dict);
     }
 
