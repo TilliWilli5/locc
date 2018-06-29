@@ -144,10 +144,10 @@ describe(__filename, ()=>{
             var dict = loc1.dictionary;
             
             //assert
-            console.dir(dict);
             chai.assert.exists(dict);
-            chai.assert.exists(dict);
-            chai.assert.exists(dict);
+            chai.assert.equal(dict["ru_RU"]["ShowMeLabel"], "Показать");
+            chai.assert.equal(dict["en_EN"]["ButtonLabel"], "Button");
+            chai.assert.equal(dict["ru_RU"]["ImageLabel"], "Изображение");
         });
 
     });
