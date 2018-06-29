@@ -3,10 +3,6 @@ const Storage = require("./locStorage.js");
 const ctx = Symbol("ctx");
 const cfg = Symbol("cfg");
 const store = Symbol("store");
-const shadowStore = Symbol("shadowStore");
-
-const shadowContext = "shadowContext";
-const shadowKey = "";
 
 const defaultConfig = {
     strictMode: false,
@@ -18,9 +14,6 @@ class Loc
         this[cfg] = this._MergeConfigs(defaultConfig, config);
         this[ctx] = this[cfg].context;
         this[store] = new Storage(this[cfg].dict);
-
-        if(this[cfg].shadowingMode)
-            this[shadowStore] = new Storage();
     }
 
     //PRIVATE
@@ -43,11 +36,6 @@ class Loc
 
     //PUBLIC
     Add(key, context, value) {
-        if(this.isShadowMode)
-        {
-            this[shadowStore].Add(key, shadowContext, shadowKey);
-            return;
-        }
         context = context || this[ctx];
         var result = this[store].Put(key, context, value);
         if(!result.success)
@@ -82,14 +70,6 @@ class Loc
 
     get dictionary(){
         return this[store].Snapshot();
-    }
-
-    get shadowDictionary(){
-        return this[shadowStore].shadowContext;
-    }
-
-    get isShadowMode(){
-        return this[cfg].shadowingMode;
     }
 }
 

@@ -47,10 +47,6 @@ function locfactory(config){
         get: ()=>inst.dictionary
     });
 
-    Object.defineProperty(self, "shadowDictionary", {
-        get: ()=>inst.shadowDictionary
-    });
-
     return self;
 }
 
