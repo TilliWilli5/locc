@@ -1,6 +1,5 @@
 const chai = require("chai")
-// const lofac = require("../Build/Development/index.js");
-const lofac = require("../Build/Production/index.js");
+const lofac = require("../Build/Current/index.js");
 
 
 describe(__filename, ()=>{
@@ -15,7 +14,7 @@ describe(__filename, ()=>{
             chai.assert.exists(lofac(null));
             chai.assert.exists(lofac({}));
             chai.assert.exists(lofac(""));
-            chai.assert.exists(lofac("t"));
+            chai.assert.exists(lofac("t")); 
             chai.assert.exists(lofac(12));
         });
 

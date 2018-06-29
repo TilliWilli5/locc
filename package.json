@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
+    "build-current-prod": "webpack ./Source/locFacade.js -o ./Build/Current/index.js --mode=production --output-libraryTarget=commonjs2",
+    "build-current-dev": "webpack ./Source/locFacade.js -o ./Build/Current/index.js --mode=development --output-libraryTarget=commonjs2",
     "build-prod": "webpack ./Source/locFacade.js -o ./Build/Production/index.js --mode=production --output-libraryTarget=commonjs2",
     "build-dev": "webpack ./Source/locFacade.js -o ./Build/Development/index.js --mode=development --output-libraryTarget=commonjs2",
     "build-prod-cont": "webpack ./Source/locFacade.js -o ./Build/Production/index.js --mode=production --output-libraryTarget=commonjs2 -w",
@@ -21,7 +23,6 @@
   ],
   "author": "tilliwilli",
   "license": "MIT",
-
   "dependencies": {},
   "devDependencies": {
     "chai": "4.1.2",

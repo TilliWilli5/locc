@@ -1,6 +1,6 @@
 const chai = require("chai")
 const { performance } = require("perf_hooks");
-const lofac = require("../Build/Production/index.js");
+const lofac = require("../Build/Current/index.js");
 
 
 describe(__filename, () => {
