@@ -1,3 +1,4 @@
 node_modules
 Build
 Artifacts
+package-lock.json

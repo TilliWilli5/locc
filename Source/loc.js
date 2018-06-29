@@ -16,8 +16,8 @@ class Loc
 {
     constructor(config) {
         this[cfg] = this._MergeConfigs(defaultConfig, config);
-        this[ctx] = config && config.context || defaultConfig.context;
-        this[store] = new Storage(config.dict);
+        this[ctx] = this[cfg].context;
+        this[store] = new Storage(this[cfg].dict);
 
         if(this[cfg].shadowingMode)
             this[shadowStore] = new Storage();

@@ -1,6 +1,5 @@
 const chai = require("chai")
-const lofac = require("../Build/Current/index.js");
-
+const lofac = require("../Source/locFacade.js");
 
 describe(__filename, ()=>{
 

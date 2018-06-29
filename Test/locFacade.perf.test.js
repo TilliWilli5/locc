@@ -1,6 +1,6 @@
 const chai = require("chai")
 const { performance } = require("perf_hooks");
-const lofac = require("../Build/Current/index.js");
+const lofac = require("../Source/locFacade.js");
 
 
 describe(__filename, () => {
